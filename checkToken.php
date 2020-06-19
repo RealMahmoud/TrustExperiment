@@ -16,7 +16,11 @@ include(dirname(__FILE__)."/partials/header.php");
                     <div class="input-group">
                       <input id="token" class="formVal form-control" value="<?php if(isset($_SESSION['token'])){echo $_SESSION['token'];};?>"></input><br>
                     </div>
-
+                    <a class="btn btn-secondary btn-small" href='#' onclick="paste(); return false;">
+                        <i class="icon icon--thin_arrow_right"></i>
+                        <span>Paste</span>
+                        <i class="icon icon--thin_arrow_left"></i>
+                    </a>
                       <a class="btn btn-secondary btn-small" href='#' onclick="Clear(); return false;">
                           <i class="icon icon--thin_arrow_left"></i>
                           <span>Clear</span>
@@ -25,9 +29,9 @@ include(dirname(__FILE__)."/partials/header.php");
 
 
                     <a class="btn btn-secondary btn-small" href='#' onclick="check(); return false;">
-                        <i class="icon icon--thin_arrow_right"></i>
+
                         <span id="text_submit">Check</span>
-                        <i class="icon icon--thin_arrow_left"></i>
+                        
                     </a>
 
 
@@ -54,6 +58,10 @@ include(dirname(__FILE__)."/partials/header.php");
  </div>
 </main>
 <script type="text/javascript">
+async function paste() {
+  const text = await navigator.clipboard.readText();
+  document.getElementById("token").value = text;
+}
 function Clear(){
   document.getElementById("token").value = '';
 }
@@ -85,7 +93,7 @@ if(data['authenticated'] == 1){
 }
 
 document.getElementById("result-authenticated").innerHTML = 'Authenticated : '+data['authenticated'];
-document.getElementById("result-time").innerHTML = 'Time : '+data['time'];
+document.getElementById("result-time").innerHTML = 'Time : '+moment.utc(data['time']).local().format('YYYY-MM-DD HH:mm A');
 
   });
 }
