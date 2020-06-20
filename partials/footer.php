@@ -13,10 +13,10 @@
           <br>
           <div class="copy" id="donation">
               <p class="desc" style="line-height: 2em;">
-                      SimpleAuth was created for <a href="#" target="_blank">@PaleBlueDot.</a> by  <a href="https://github.com/RealMahmoud/" target="_blank">@RealMahmoud.</a>
+                      SimpleAuth was created for <a href="https://github.com/1PaleBlueDot/" target="_blank">@PaleBlueDot.</a> by  <a href="https://github.com/RealMahmoud/" target="_blank">@RealMahmoud.</a>
                       Please support by donating to
-                      <a href="https://scan.idena.io/address/0x400c4f7822a6c0f81fffcd425f98a92d18ebc567" target="_blank">
-                      <span class="donate">0x400c4f7822a6c0f81fffcd425f98a92d18ebc567</span>
+                      <a href="https://scan.idena.io/address/0xE23dF5eEBBE2A1aC58DD20A9A7aF79252c4510D1" target="_blank">
+                      <span class="donate">0xE23dF5eEBBE2A1aC58DD20A9A7aF79252c4510D1</span>
                       </a>
               </p>
           </div>

@@ -131,11 +131,7 @@ input[type=text]:hover {
               Check Token
             </a>
           </li>
-          <li class="nav-item header_nav__item">
-            <a class="nav-link header_nav__link appslink" href="./vote.php" title="VOTE" descriptioncontent="VOTE">
-              Vote For Idena.vote
-            </a>
-          </li>
+        
 
 
 </div>

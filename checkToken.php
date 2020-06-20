@@ -1,6 +1,6 @@
 <?php
 session_start();
-$pagetitle = 'Check Token';
+$pagetitle = 'TrustExperiment - Check Token';
 include(dirname(__FILE__)."/partials/header.php");
 ?>
 
@@ -31,7 +31,7 @@ include(dirname(__FILE__)."/partials/header.php");
                     <a class="btn btn-secondary btn-small" href='#' onclick="check(); return false;">
 
                         <span id="text_submit">Check</span>
-                        
+
                     </a>
 
 
@@ -43,6 +43,8 @@ include(dirname(__FILE__)."/partials/header.php");
                   <p class="viplbl" id="result-nonce">Nonce : </p>
                   <p class="catlbl"id="result-sig"style="word-break: break-all;">Sig :</p>
                   <p  class="voteslbl"id="result-addr">Address :</p>
+                  <p  class="catlbl"id="result-age">Age :</p>
+                  <p  class="violbl"id="result-status">Status :</p>
                   <p class="timelbl"id="result-doubleCheck">Double Check : </p>
                   <p class="viplbl"id="result-authenticated">Authenticated : </p>
                   <p class="timelbl"id="result-time">Time :</p>
@@ -75,6 +77,16 @@ function doubleCheck(nonce,sig,address){
   document.getElementById("result-doubleCheck").innerHTML = 'Double Check : '+ data['result'];
   });
 }
+function apiPull(address){
+  ajax_get('https://api.idena.org/api/identity/'+address+'/age', function(data) {
+  document.getElementById("result-age").innerHTML = 'Age : '+ data['result'];
+  });
+  ajax_get('https://api.idena.org/api/identity/'+address, function(data) {
+  document.getElementById("result-status").innerHTML = 'Status : '+ data['result']['state'];
+  });
+
+
+}
 function check(){
   var formData = new FormData();
   formData.append('token', document.getElementById("token").value);
@@ -94,7 +106,7 @@ if(data['authenticated'] == 1){
 
 document.getElementById("result-authenticated").innerHTML = 'Authenticated : '+data['authenticated'];
 document.getElementById("result-time").innerHTML = 'Time : '+moment.utc(data['time']).local().format('YYYY-MM-DD HH:mm A');
-
+apiPull(data['addr']);
   });
 }
 </script>
