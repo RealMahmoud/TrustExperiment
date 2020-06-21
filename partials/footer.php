@@ -13,7 +13,7 @@
           <br>
           <div class="copy" id="donation">
               <p class="desc" style="line-height: 2em;">
-                      SimpleAuth was created for <a href="https://github.com/1PaleBlueDot/" target="_blank">@PaleBlueDot.</a> by  <a href="https://github.com/RealMahmoud/" target="_blank">@RealMahmoud.</a>
+                      TrustExperiment was created for <a href="https://github.com/1PaleBlueDot/" target="_blank">@PaleBlueDot.</a> by  <a href="https://github.com/RealMahmoud/" target="_blank">@RealMahmoud.</a>
                       Please support by donating to
                       <a href="https://scan.idena.io/address/0xE23dF5eEBBE2A1aC58DD20A9A7aF79252c4510D1" target="_blank">
                       <span class="donate">0xE23dF5eEBBE2A1aC58DD20A9A7aF79252c4510D1</span>
