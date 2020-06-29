@@ -5,13 +5,13 @@ header('Content-Type: application/json');
 
 $token = $conn->real_escape_string($_POST['token']);
 $token = htmlspecialchars($token);
-if(!empty($token) && !empty($_SESSION["SAaddr"]))
+if(!empty($token))
 {
 
 
   $result =(object)array();
 
-  $resultSQL = $conn->query("SELECT * FROM auth where token = '".$token."';");
+  $resultSQL = $conn->query("SELECT * FROM auth where token = '".$token."' LIMIT 1;");
   $row = $resultSQL->fetch_row();
   $result->id=$row[0];
   $result->token=$row[1];
