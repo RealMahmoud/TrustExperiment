@@ -6,7 +6,7 @@
 
   <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
-  <meta name="description" content="Idena is novel way to create anonymous identity on blockchain.The Idena blockchain is driven by proof-of-person consensus: Every node is linked to a cryptoidentity, one single person with equal voting power."/>
+  <meta name="description" content="Idena.Codes helps verify new users, give out invitation codes to new users and add a layer of trust to network security "/>
 
 
   <link rel="shortcut icon" href="./favicon.ico"/>
@@ -50,6 +50,7 @@
 
 
       </div>
+      
 </div>
 <style type="text/css">
 
@@ -122,8 +123,8 @@ input[type=text]:hover {
 </style>
 <div class="col-auto">
   <li class="nav-item header_nav__item">
-    <a class="nav-link header_nav__link appslink" href="./displayToken.php" title="Display Token" descriptioncontent="Display Token">
-      Display Token
+    <a class="nav-link header_nav__link appslink" href="./createToken.php" title="Create Token" descriptioncontent="Create Token">
+      Create Token
     </a>
   </li>
           <li class="nav-item header_nav__item">
@@ -132,7 +133,12 @@ input[type=text]:hover {
             </a>
           </li>
         
-
+             <li class="nav-item header_nav__item">
+               <a class="nav-link header_nav__link appslink" href="./faq.php" title="FAQ" descriptioncontent="FAQ">
+                FAQ
+               </a>
+            </li>
+        
 
 </div>
 

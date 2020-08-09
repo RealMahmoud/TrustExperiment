@@ -3,7 +3,7 @@ session_start();
 if(!empty($_GET['logged'])){
   include(dirname(__FILE__)."/common/_protected.php");
 }
-$pagetitle = 'Idena.Codes - Home';
+$pagetitle = 'Idena.Codes - Faq';
 include(dirname(__FILE__)."/partials/header.php");
 ?>
 
@@ -14,91 +14,102 @@ include(dirname(__FILE__)."/partials/header.php");
 </div>
 </header>
 <main class="main">
-<div class="container">
-<section class="section section_content menu_section_content menu_faq" id="faq">
-<div class="container">
-<div class="row justify-content-center">
-<div class="col-md-7 col-lg-6">
-<div class="section_header">
-<br><h3 class="info_block__accent" style="text-align:center;" class="h1">Want to talk to a real person? </h3>
-<p class="hint text-center">Come chat and say hi to us at
-<a href="https://t.me/Idenacodes">@Idena.Codes</a>.
-</p>
-<p class="hint text-center"></p>
-</div>
-<p>
-<br>
-</p><br><h3 class="info_block__accent" style="text-align:center;">Questions</h3>
-<div class="faq accordion" id="accordion">
-<div class="card">
-<div class="card-header" id="faq-pop-1">
-<a class="collapsed" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-How can I trust you?
-</a>
-</div>
-<div id="collapseOne" class="collapse" aria-labelledby="faq-pop-1" data-parent="#accordion">
-<div class="card-body">
-<p>
-We're open source. Check out our code on our <a href="https://github.com/RealMahmoud/Idena.codes" target="_blank">Github</a>
-</p>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="card-header" id="faq-pop-2">
-<a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-Why did you make this ?
-</a>
-</div>
-<div id="collapseTwo" class="collapse" aria-labelledby="faq-pop-2" data-parent="#accordion">
-<div class="card-body">
-<p>
-This a collaboration project between Community Dev RealMahmoud and PaleBlueDot to improve trust and the invite process
-</p>
+  <div class="container">
+    <section class="section section_content menu_section_content menu_faq" id="faq">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-7 col-lg-6">
+            <div class="section_header">
+              <br>
+              <h3 class="info_block__accent" style="text-align:center;" class="h1">Want to talk to a real person? </h3>
+              <p class="hint text-center">Come chat and say hi to us at
+                <a href="https://t.me/Idenacodes">@IdenaCodes</a>.
+              </p>
+              <p class="hint text-center"></p>
+            </div>
+            <p>
+              <br>
+            </p><br>
+            <h3 class="info_block__accent" style="text-align:center;">Questions</h3>
+            <div class="faq accordion" id="accordion">
+              <div class="card">
+                <div class="card-header" id="faq-pop-1">
+                  <a class="collapsed" data-toggle="collapse" href="#collapseOne" aria-expanded="false"
+                    aria-controls="collapseOne">
+                    How can I trust you?
+                  </a>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="faq-pop-1" data-parent="#accordion">
+                  <div class="card-body">
+                    <p>
+                      We're open source. Check out our code on our <a href="https://github.com/RealMahmoud/Idena.codes"
+                        target="_blank">Github</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="faq-pop-2">
+                  <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false"
+                    aria-controls="collapseTwo">
+                    Why did you make this ?
+                  </a>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="faq-pop-2" data-parent="#accordion">
+                  <div class="card-body">
+                    <p>
+                      This a collaboration project between Community Dev RealMahmoud and PaleBlueDot to improve trust
+                      and the invite process
+                    </p>
 
-</div>
-</div>
-</div>
-<div class="card">
-<div class="card-header" id="faq-pop-3">
-<a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-How does it work ?
-</a>
-</div> 
-<div id="collapseThree" class="collapse" aria-labelledby="faq-pop-3" data-parent="#accordion">
-<div class="card-body">
-<p>
-Using a fully set-up node the Idena sign on process creates a unique token to verify the log-in. You can use this token to verify the status of the node and make sure it is properly set up to receive an invite</p>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="card-header" id="faq-pop-4">
-<a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-Can I get an invite?</a>
-</div>
-<div id="collapseFour" class="collapse" aria-labelledby="faq-pop-4" data-parent="#accordion">
-<div class="card-body">
-<p>sure!</p>
-<p>1. Have a fully synced and set up Idena Node </p>
-<p>2. Use the Create Token Function </p>
-<p>3. Copy the token and join our <a href="https://t.me/Idenacodes" target="_blank">Telegram </a> and we will verify you're a human and good actor for Idena Network</p>
-<p>4. Pass the Idena Validation ceremony and become a node for the Idena Network </p>
-</div>
-</div>
-</div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="faq-pop-3">
+                  <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false"
+                    aria-controls="collapseThree">
+                    How does it work ?
+                  </a>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="faq-pop-3" data-parent="#accordion">
+                  <div class="card-body">
+                    <p>
+                      Using a fully set-up node the Idena sign on process creates a unique token to verify the log-in.
+                      You can use this token to verify the status of the node and make sure it is properly set up to
+                      receive an invite</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="faq-pop-4">
+                  <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="false"
+                    aria-controls="collapseFour">
+                    Can I get an invite?</a>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="faq-pop-4" data-parent="#accordion">
+                  <div class="card-body">
+                    <p>sure!</p>
+                    <p>1. Have a fully synced and set up Idena Node </p>
+                    <p>2. Use the Create Token Function </p>
+                    <p>3. Copy the token and join our <a href="https://t.me/Idenacodes" target="_blank">Telegram </a>
+                      and we will verify you're a human and good actor for Idena Network</p>
+                    <p>4. Pass the Idena Validation ceremony and become a node for the Idena Network </p>
+                  </div>
+                </div>
+              </div>
 
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
+  </div>
+  </section>
 
- <!-- this is to close main, div opened in the header -->
- </div>
+  <!-- this is to close main, div opened in the header -->
+  </div>
 </main>
 
 

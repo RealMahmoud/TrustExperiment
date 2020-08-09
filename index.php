@@ -48,7 +48,7 @@ through the client and you will be part of the Idena network once you pass valid
       <div class="card" id="empty_card" style="text-align:center;">
         <div>
 
-          <h1 class="text_block" id="none">For an invite to the Idena Network, follow the process above and join our <a
+          <h1 class="text_block m-auto" id="none">For an invite to the Idena Network, follow the process above and join our <a
               href="https://t.me/Idenacodes" target="_blank">Telegram</a>
 
         </div>
