@@ -1,6 +1,6 @@
 <?php
 session_start();
-$pagetitle = 'TrustExperiment - Check Token';
+$pagetitle = 'Idena.Codes - Create Token';
 include(dirname(__FILE__)."/partials/header.php");
 ?>
 
