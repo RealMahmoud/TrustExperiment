@@ -22,6 +22,7 @@
           </div>
       </div>
   </footer>
+  <script src="./js/preload.js"></script>
 </body>
 
 </html>
