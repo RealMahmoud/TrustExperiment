@@ -5481,7 +5481,9 @@ p:last-child {
 
 .icon--report:before {
   content: '\E932'; }
-
+.icon--discord_icn:before {
+    content: "\E920";
+}
 .icon--status:before {
   content: '\E90E'; }
 

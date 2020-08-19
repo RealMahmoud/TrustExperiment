@@ -42,7 +42,7 @@ header('Content-Type: application/json');
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    $address   = $row['addr'];
+    $address   = $row['address'];
     $message   = $row['nonce'];
     $signature = $data['signature'];
 

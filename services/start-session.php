@@ -14,5 +14,12 @@ VALUES ('".'signin-'.$nonce."', '".$data['token']."', '".$data['address']."')";
 $conn->query($sql);
 $conn->close();
 header('Content-Type: application/json');
+$result =(object)array();
+$result->success=true;
+$data =(object)array();
+$data->nonce='signin-'.$nonce;
+$result->data=$data;
+echo json_encode($result);
 ?>
-{"success":true,"data":{"nonce":"signin-<?php echo $nonce; ?>"}}
+
+

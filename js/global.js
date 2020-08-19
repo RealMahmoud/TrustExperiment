@@ -1,5 +1,5 @@
 
-var imgURL = './images/idena-logo-dark.svg';
+var imgURL = './images/idena_black.svg';
 var moonURL = './images/moon.svg';
 var sunURL = './images/sun.svg';
 var parent = document.querySelector(".header_logo");
@@ -29,7 +29,7 @@ scrolltop = document.createElement("button");
   //themetop.classList.add("hide");
   themetop.innerHTML = '<button type="button" id="moon" class="rem btn btn-icon theme"'
               +' onclick="localStorage.setItem(\'mode\', \'dark\');'
-              +'document.querySelector(\'.header_logo a img\').setAttribute(\'src\',\'./images/idena-logo-dark.svg\');'
+              +'document.querySelector(\'.header_logo a img\').setAttribute(\'src\',\'./images/idena_black.svg\');'
               +'document.getElementsByTagName(\'html\')[0].classList.add(\'darkmode\');'
               +'document.getElementById(\'moon\').classList.add(\'rem\');'
               +'document.getElementById(\'sun\').classList.remove(\'rem\');'
@@ -60,16 +60,3 @@ scrolltop = document.createElement("button");
     document.getElementById('sun').classList.add('rem');
   } 
 
-var sticky = document.getElementsByClassName('header')[0].offsetTop;
-
-window.onscroll = function() {shadowFunction()};
-
-function shadowFunction() {
-  if (window.pageYOffset > sticky) {
-    document.getElementsByClassName('header')[0].classList.add('header-shadow');
-    document.getElementById('scrollTop').classList.remove('hide');
-  } else {
-    document.getElementsByClassName('header')[0].classList.remove('header-shadow');
-    document.getElementById('scrollTop').classList.add('hide');
-  }
-}
