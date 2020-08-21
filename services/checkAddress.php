@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 
 $address = $conn->real_escape_string($_POST['Address']);
 $address = htmlspecialchars($address);
-if(!empty($token))
+if(!empty($address))
 {
 
 

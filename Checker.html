@@ -107,12 +107,12 @@
     formData.append('Address', document.getElementById("Address").value);
     ajax_post('./services/checkAddress.php', formData, function (data) {
       document.getElementById("result-id").innerHTML = 'ID : ' + data['id'];
-      document.getElementById("result-token").innerHTML = 'Token : ' + data['token'];
-      document.getElementById("result-nonce").innerHTML = 'Nonce : ' + data['nonce'];
-      document.getElementById("result-sig").innerHTML = 'Sig : ' + data['sig'];
+      document.getElementById("result-token").innerHTML = 'Token : ' + data['lastToken'];
+      document.getElementById("result-nonce").innerHTML = 'Nonce : ' + data['lastNonce'];
+      document.getElementById("result-sig").innerHTML = 'Sig : ' + data['lastSig'];
       document.getElementById("result-address").innerHTML = 'Address : ' + data['address'];
       apiPull(document.getElementById("Address").value);
-      doubleCheck(data['nonce'], data['sig'], document.getElementById("Address").value);
+      doubleCheck(data['lastNonce'], data['lastSig'], document.getElementById("Address").value);
       if (data['authenticated'] == 1) {
         data['authenticated'] = 'True';
       } else {
