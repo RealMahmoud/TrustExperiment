@@ -117,9 +117,24 @@
 
 <script>
 
-https://api.idena.org/api/OnlineIdentities/Count
-https://api.idena.org/api/OnlineMiners/Count
+
   
+$.ajax({
+	  url: 'https://api.idena.org/api/OnlineMiners/Count',
+	  async: false,
+	  dataType: 'json',
+	  success: function (json) {
+      document.getElementById("OnlineMinersTotal").innerHTML = json.result;
+	  }
+	});
+  $.ajax({
+	  url: 'https://api.idena.org/api/OnlineIdentities/Count',
+	  async: false,
+	  dataType: 'json',
+	  success: function (json) {
+      document.getElementById("ValidatedTotal").innerHTML = json.result;
+	  }
+	});
 
   var NextValidation = [];
 	$.ajax({
