@@ -85,13 +85,13 @@
           <div class="row">
             <div class="col-12 col-sm-12 bordered-col lead_info__counter" id="TimerPanel">
               <div id="counter" class="_value row justify-content-center">
-                <div class="col-auto"><span class="days">9</span><span class="_smalltext"> days</span></div>
-                <div class="col-auto"><span class="hours">20</span><span class="_smalltext"> hours</span></div>
-                <div class="col-auto"><span class="minutes">6</span><span class="_smalltext"> minutes</span></div>
-                <div class="col-auto"><span class="seconds">2</span><span class="_smalltext"> seconds</span></div>
+                <div class="col-auto"><span id="days">--</span><span class="_smalltext"> days</span></div>
+                <div class="col-auto"><span id="hours">--</span><span class="_smalltext"> hours</span></div>
+                <div class="col-auto"><span id="minutes">--</span><span class="_smalltext"> minutes</span></div>
+                <div class="col-auto"><span id="seconds">--</span><span class="_smalltext"> seconds</span></div>
               </div>
               <div class="control-label" data-toggle="tooltip"><span id="validation_sub">Validation
-                  time</span>&nbsp;&nbsp;<span id="NextValidationDateTime">Sat Aug 29 2020 15:30:00</span></div>
+                  time :</span>&nbsp;&nbsp;<span id="NextValidationDateTime">-- -- -- -- -- </span></div>
             </div>
           </div>
         </div>
@@ -104,7 +104,7 @@
           <div class="row">
             <div class="col-12 col-sm-12 bordered-col">
               <div class="col-auto">
-                <h3 class="info_block__accent" id="NetworkGrowth"><span class="green">100</span></h3>
+                <h3 class="info_block__accent" id="NetworkGrowth"><span class="green">+100 ↑</span></h3>
               </div>
               <div class="control-label" id="since_last_epoch" title="Network growth since last epoch">Growth since last
                 epoch</div>
@@ -115,3 +115,35 @@
     </div>
   </div>
 </section>
+
+<script>
+
+
+  
+
+  var NextValidation = [];
+	$.ajax({
+	  url: 'https://api.idena.org/api/epoch/last',
+	  async: false,
+	  dataType: 'json',
+	  success: function (json) {
+		NextValidation = json.result.validationTime;
+	  }
+	});
+
+          document.getElementById("NextValidationDateTime").innerHTML = moment.utc(NextValidation).local().format('YYYY-MM-DD HH:mm A');
+					var countDownDate = new Date(NextValidation).getTime();
+					var x = setInterval(function() {
+					  var now = new Date().getTime();
+					  var distance = countDownDate - now;
+					  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+					  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+					  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+					  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+					}, 1000);
+					
+</script>
