@@ -1,0 +1,128 @@
+<div class=" row">
+  <div class="col-6">
+    <div class="card " id="empty_card" style="text-align:center;">
+      <h5 class="info_block__accent">Enter Address</h5>
+      <form METHOD="POST" onsubmit="check(); return false;">
+        <div class="input-group">
+          <input id="Address" class="formVal form-control" value=""></input><br>
+        </div>
+        <a class="btn btn-secondary btn-small" href='#' onclick="paste(); return false;">
+          <i class="icon icon--thin_arrow_right"></i>
+          <span>Paste</span>
+          <i class="icon icon--thin_arrow_left"></i>
+        </a>
+        <a class="btn btn-secondary btn-small" href='#' onclick="Clear(); return false;">
+          <i class="icon icon--thin_arrow_left"></i>
+          <span>Clear</span>
+          <i class="icon icon--thin_arrow_right"></i>
+        </a>
+        <a class="btn btn-secondary btn-small" href='#' onclick="check(); return false;">
+          <span id="text_submit">Check</span>
+        </a>
+      </form>
+    </div>
+
+
+
+    <div class="card " id="empty_card" style="text-align:center;">
+      <h5 class="info_block__accent">Send invite</h5>
+      <form METHOD="POST" onsubmit="check(); return false;">
+        <div class="input-group">
+          <input id="Address" class="formVal form-control" value=""></input><br>
+        </div>
+        <a class="btn btn-secondary btn-small" href='#' onclick="paste(); return false;">
+          <i class="icon icon--thin_arrow_right"></i>
+          <span>Paste</span>
+          <i class="icon icon--thin_arrow_left"></i>
+        </a>
+        <a class="btn btn-secondary btn-small" href='#' onclick="Clear(); return false;">
+          <i class="icon icon--thin_arrow_left"></i>
+          <span>Clear</span>
+          <i class="icon icon--thin_arrow_right"></i>
+        </a>
+        <a class="btn btn-secondary btn-small" href='#' onclick="check(); return false;">
+          <span id="text_submit">Send</span>
+        </a>
+
+      </form>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card" id="empty_card" style="text-align:center;">
+      <div id='container'>
+
+        <p class="viplbl mb-0" id="result-id">ID : </p>
+        <p class="voteslbl mb-0" id="result-token">Token : </p>
+        <p class="viplbl mb-0" id="result-nonce">Nonce : </p>
+        <p class="catlbl mb-0" id="result-sig" style="word-break: break-all;">Sig :</p>
+        <p class="voteslbl mb-0" id="result-address">Address :</p>
+        <p class="catlbl mb-0" id="result-age">Age :</p>
+        <p class="violbl mb-0" id="result-status">Status :</p>
+        <p class="timelbl mb-0" id="result-doubleCheck">Double Check : </p>
+        <p class="viplbl mb-0" id="result-authenticated">Authenticated : </p>
+        <p class="timelbl mb-0" id="result-time">Time :</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- this is to close main, div opened in the header -->
+</div>
+</main>
+<script type="text/javascript">
+  async function paste() {
+    const text = await navigator.clipboard.readText();
+    document.getElementById("Address").value = text;
+  }
+
+  function Clear() {
+    document.getElementById("Address").value = '';
+  }
+
+  function doubleCheck(nonce, sig, address) {
+    var formData = new FormData();
+    formData.append('nonce', nonce);
+    formData.append('sig', sig);
+    formData.append('address', address);
+    ajax_post('./services/doubleCheck.php', formData, function (data) {
+      document.getElementById("result-doubleCheck").innerHTML = 'Double Check : ' + data['result'];
+    });
+  }
+
+  function apiPull(address) {
+    ajax_get('https://api.idena.org/api/identity/' + address + '/age', function (data) {
+      document.getElementById("result-age").innerHTML = 'Age : ' + data['result'];
+    });
+    ajax_get('https://api.idena.org/api/identity/' + address, function (data) {
+      document.getElementById("result-status").innerHTML = 'Status : ' + data['result']['state'];
+    });
+
+
+  }
+
+  function check() {
+    var formData = new FormData();
+    formData.append('Address', document.getElementById("Address").value);
+    ajax_post('./services/checkAddress.php', formData, function (data) {
+      document.getElementById("result-id").innerHTML = 'ID : ' + data['id'];
+      document.getElementById("result-token").innerHTML = 'Token : ' + data['lastToken'];
+      document.getElementById("result-nonce").innerHTML = 'Nonce : ' + data['lastNonce'];
+      document.getElementById("result-sig").innerHTML = 'Sig : ' + data['lastSig'];
+      document.getElementById("result-address").innerHTML = 'Address : ' + data['address'];
+      apiPull(document.getElementById("Address").value);
+      doubleCheck(data['lastNonce'], data['lastSig'], document.getElementById("Address").value);
+      if (data['authenticated'] == 1) {
+        data['authenticated'] = 'True';
+      } else {
+        data['authenticated'] = 'False';
+      }
+
+      document.getElementById("result-authenticated").innerHTML = 'Authenticated : ' + data['authenticated'];
+      document.getElementById("result-time").innerHTML = 'Time : ' + moment.utc(data['time']).local().format(
+        'YYYY-MM-DD HH:mm A');
+      
+    });
+  }
+</script>

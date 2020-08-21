@@ -25,10 +25,10 @@ if(!isset($_POST['nonce'])){
 if(!isset($_POST['sig'])){
   die('{"result":"ERROR"}');
 }
-if(!isset($_POST['addr'])){
+if(!isset($_POST['address'])){
   die('{"result":"ERROR"}');
 }
-if(check($_POST['nonce'], $_POST['sig'],$_POST['addr']) == true){
+if(check($_POST['nonce'], $_POST['sig'],$_POST['address']) == true){
    echo '{"result":"Passed"}';
 }else{
    echo '{"result":"Failed"}';
