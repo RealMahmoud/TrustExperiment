@@ -9,7 +9,7 @@ $data = (array) json_decode($json);
 $nonce = GUID();
 if ($data['token'] == ''){die();};
 if ($data['address'] == ''){die();};
-$sql = "INSERT INTO auth (nonce,token, addr)
+$sql = "INSERT INTO auth (nonce,token, address)
 VALUES ('".'signin-'.$nonce."', '".$data['token']."', '".$data['address']."')";
 $conn->query($sql);
 $conn->close();
