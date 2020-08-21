@@ -11,7 +11,7 @@ if(!empty($address))
 
   $result =(object)array();
 
-  $resultSQL = $conn->query("SELECT * FROM auth where address = '".$address."' LIMIT 1;");
+  $resultSQL = $conn->query("SELECT * FROM auth where address = '".$address."' ORDER BY `auth`.`id` DESC LIMIT 1;");
   $row = $resultSQL->fetch_row();
   $result->id=$row[0];
   $result->lastToken=$row[1];
