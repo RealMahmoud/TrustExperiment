@@ -3,5 +3,5 @@
 session_start();
 unset($_SESSION['SAaddr']);
 unset($_SESSION['SAtoken']);
-header("location:index.php");
+
 ?>
