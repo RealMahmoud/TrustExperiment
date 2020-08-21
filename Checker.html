@@ -59,8 +59,7 @@
         <p class="catlbl mb-0" id="result-age">Age :</p>
         <p class="violbl mb-0" id="result-status">Status :</p>
         <p class="timelbl mb-0" id="result-doubleCheck">Double Check : </p>
-        <p class="viplbl mb-0" id="result-authenticated">Authenticated : </p>
-        <p class="timelbl mb-0" id="result-time">Time :</p>
+        <p class="timelbl mb-0" id="result-time">Last successful Time :</p>
 
       </div>
     </div>
@@ -113,13 +112,6 @@
       document.getElementById("result-address").innerHTML = 'Address : ' + data['address'];
       apiPull(document.getElementById("Address").value);
       doubleCheck(data['lastNonce'], data['lastSig'], document.getElementById("Address").value);
-      if (data['authenticated'] == 1) {
-        data['authenticated'] = 'True';
-      } else {
-        data['authenticated'] = 'False';
-      }
-
-      document.getElementById("result-authenticated").innerHTML = 'Authenticated : ' + data['authenticated'];
       document.getElementById("result-time").innerHTML = 'Time : ' + moment.utc(data['time']).local().format(
         'YYYY-MM-DD HH:mm A');
       
