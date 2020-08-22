@@ -6,7 +6,9 @@
 
 
 
-
+.darkmode .headerBG{
+    background-color:rgb(47, 50, 51)!important;
+}
 .darkmode .viplbl{
   color: #ffbb1b !important;
 }
@@ -104,9 +106,7 @@
 
 
 
-.darkmode .header {
-    background: #393c3e !important;
-}
+
 
 .darkmode .header-shadow {
     -webkit-box-shadow: 0 2px 15px rgba(0,0,0,.2);

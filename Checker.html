@@ -6,12 +6,12 @@
         <div class="input-group">
           <input id="Address" class="formVal form-control" value=""></input><br>
         </div>
-        <a class="btn btn-secondary btn-small" href='#' onclick="paste(); return false;">
+        <a class="btn btn-secondary btn-small" href='#' onclick="paste('Address'); return false;">
           <i class="icon icon--thin_arrow_right"></i>
           <span>Paste</span>
           <i class="icon icon--thin_arrow_left"></i>
         </a>
-        <a class="btn btn-secondary btn-small" href='#' onclick="Clear(); return false;">
+        <a class="btn btn-secondary btn-small" href='#' onclick="Clear('Address'); return false;">
           <i class="icon icon--thin_arrow_left"></i>
           <span>Clear</span>
           <i class="icon icon--thin_arrow_right"></i>
@@ -28,19 +28,19 @@
       <h5 class="info_block__accent">Send invite</h5>
       <form METHOD="POST" onsubmit="check(); return false;">
         <div class="input-group">
-          <input id="Address" class="formVal form-control" value=""></input><br>
+          <input id="INVITE" class="formVal form-control" value="" disabled></input><br>
         </div>
-        <a class="btn btn-secondary btn-small" href='#' onclick="paste(); return false;">
+        <a class="btn btn-secondary btn-small" href='#' onclick="paste('INVITE'); return false;"disabled>
           <i class="icon icon--thin_arrow_right"></i>
           <span>Paste</span>
           <i class="icon icon--thin_arrow_left"></i>
         </a>
-        <a class="btn btn-secondary btn-small" href='#' onclick="Clear(); return false;">
+        <a class="btn btn-secondary btn-small" href='#' onclick="Clear('INVITE'); return false;"disabled>
           <i class="icon icon--thin_arrow_left"></i>
           <span>Clear</span>
           <i class="icon icon--thin_arrow_right"></i>
         </a>
-        <a class="btn btn-secondary btn-small" href='#' onclick="check(); return false;">
+        <a class="btn btn-secondary btn-small" href='#' onclick="INVITE(); return false;"disabled>
           <span id="text_submit">Send</span>
         </a>
 
@@ -71,13 +71,13 @@
 </div>
 </main>
 <script type="text/javascript">
-  async function paste() {
+  async function paste(id) {
     const text = await navigator.clipboard.readText();
-    document.getElementById("Address").value = text;
+    document.getElementById(id).value = text;
   }
 
-  function Clear() {
-    document.getElementById("Address").value = '';
+  function Clear(id) {
+    document.getElementById(id).value = '';
   }
 
   function doubleCheck(nonce, sig, address) {
