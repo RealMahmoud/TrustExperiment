@@ -124,9 +124,8 @@
 
 <script>
 
-
-  
-$.ajax({
+function loadCounter(){
+  $.ajax({
 	  url: 'https://api.idena.org/api/OnlineMiners/Count',
 	  async: false,
 	  dataType: 'json',
@@ -142,7 +141,6 @@ $.ajax({
       document.getElementById("ValidatedTotal").innerHTML = json.result;
 	  }
 	});
-
   var NextValidation = [];
 	$.ajax({
 	  url: 'https://api.idena.org/api/epoch/last',
@@ -151,9 +149,8 @@ $.ajax({
 	  success: function (json) {
 		NextValidation = json.result.validationTime;
 	  }
-	});
-
-          document.getElementById("NextValidationDateTime").innerHTML = moment.utc(NextValidation).local().format('YYYY-MM-DD HH:mm A');
+  });
+  document.getElementById("NextValidationDateTime").innerHTML = moment.utc(NextValidation).local().format('YYYY-MM-DD HH:mm A');
 					var countDownDate = new Date(NextValidation).getTime();
 					var x = setInterval(function() {
 					  var now = new Date().getTime();
@@ -167,5 +164,15 @@ $.ajax({
             document.getElementById("minutes").innerHTML = minutes;
             document.getElementById("seconds").innerHTML = seconds;
 					}, 1000);
-					
+}
+  
+
+ 
+
+         
+        
+        
+
+  loadCounter();
+
 </script>
