@@ -86,7 +86,12 @@
     formData.append('sig', sig);
     formData.append('address', address);
     ajax_post('./services/doubleCheck.php', formData, function (data) {
-      document.getElementById("result-doubleCheck").innerHTML = 'Double Check : ' + data['result'];
+      if(data['result']==null){
+        document.getElementById("result-doubleCheck").innerHTML = 'Double Check : Failed';
+      }else{
+        document.getElementById("result-doubleCheck").innerHTML = 'Double Check : ' + data['result'];
+      }
+      
     });
   }
 
@@ -108,7 +113,18 @@
       return
     }
     ajax_post('./services/checkAddress.php', formData, function (data) {
-      document.getElementById("result-id").innerHTML = 'ID : ' + data['id'];
+      if( data['id']== '--'){
+        document.getElementById("result-id").innerHTML = 'ID : --' ;
+      document.getElementById("result-token").innerHTML = 'Token : --' ;
+      document.getElementById("result-nonce").innerHTML = 'Nonce : --' ;
+      document.getElementById("result-sig").innerHTML = 'Sig : --' ;
+      document.getElementById("result-address").innerHTML = 'Address : --';
+      document.getElementById("result-time").innerHTML = 'Time : --';
+      document.getElementById("result-doubleCheck").innerHTML = 'Double Check : --';
+      document.getElementById("result-age").innerHTML = 'Age : --';
+      document.getElementById("result-status").innerHTML = 'Status : --';
+      }else{
+        document.getElementById("result-id").innerHTML = 'ID : ' + data['id'];
       document.getElementById("result-token").innerHTML = 'Token : ' + data['lastToken'];
       document.getElementById("result-nonce").innerHTML = 'Nonce : ' + data['lastNonce'];
       document.getElementById("result-sig").innerHTML = 'Sig : ' + data['lastSig'];
@@ -117,6 +133,12 @@
       doubleCheck(data['lastNonce'], data['lastSig'], document.getElementById("Address").value);
       document.getElementById("result-time").innerHTML = 'Time : ' + moment.utc(data['time']).local().format(
         'YYYY-MM-DD HH:mm A');
+      }
+
+     
+     
+      
+      
       
     });
   }
