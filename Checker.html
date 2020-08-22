@@ -30,17 +30,17 @@
         <div class="input-group">
           <input id="INVITE" class="formVal form-control" value="" disabled></input><br>
         </div>
-        <a class="btn btn-secondary btn-small" href='#' onclick="paste('INVITE'); return false;"disabled>
+        <a class="btn btn-secondary btn-small" href='#' onclick="paste('INVITE'); return false;" disabled>
           <i class="icon icon--thin_arrow_right"></i>
           <span>Paste</span>
           <i class="icon icon--thin_arrow_left"></i>
         </a>
-        <a class="btn btn-secondary btn-small" href='#' onclick="Clear('INVITE'); return false;"disabled>
+        <a class="btn btn-secondary btn-small" href='#' onclick="Clear('INVITE'); return false;" disabled>
           <i class="icon icon--thin_arrow_left"></i>
           <span>Clear</span>
           <i class="icon icon--thin_arrow_right"></i>
         </a>
-        <a class="btn btn-secondary btn-small" href='#' onclick="INVITE(); return false;"disabled>
+        <a class="btn btn-secondary btn-small" href='#' onclick="INVITE(); return false;" disabled>
           <span id="text_submit">Send</span>
         </a>
 
@@ -51,15 +51,16 @@
     <div class="card" id="empty_card" style="text-align:center;">
       <div id='container'>
 
-        <p class="viplbl mb-0" id="result-id">ID : </p>
-        <p class="voteslbl mb-0" id="result-token">Token : </p>
-        <p class="viplbl mb-0" id="result-nonce">Nonce : </p>
-        <p class="catlbl mb-0" id="result-sig" style="word-break: break-all;">Sig :</p>
+        <div class="user-pic" style="margin-right: 0px;"><img id="CheckerPic" class="user-avatar"
+            src="./images/logo_light.png" alt="pic" width="100"></div>
+            <br>
+            <br>
+            
         <p class="voteslbl mb-0" id="result-address">Address :</p>
         <p class="catlbl mb-0" id="result-age">Age :</p>
         <p class="violbl mb-0" id="result-status">Status :</p>
         <p class="timelbl mb-0" id="result-doubleCheck">Double Check : </p>
-        <p class="timelbl mb-0" id="result-time">Last successful Time :</p>
+        <p class="timelbl mb-0" id="result-time">Last successful login :</p>
 
       </div>
     </div>
@@ -86,12 +87,12 @@
     formData.append('sig', sig);
     formData.append('address', address);
     ajax_post('./services/doubleCheck.php', formData, function (data) {
-      if(data['result']==null){
+      if (data['result'] == null) {
         document.getElementById("result-doubleCheck").innerHTML = 'Double Check : Failed';
-      }else{
+      } else {
         document.getElementById("result-doubleCheck").innerHTML = 'Double Check : ' + data['result'];
       }
-      
+
     });
   }
 
@@ -109,37 +110,32 @@
   function check() {
     var formData = new FormData();
     formData.append('Address', document.getElementById("Address").value);
-    if(document.getElementById("Address").value == '' || document.getElementById("Address").value == null){
+    if (document.getElementById("Address").value == '' || document.getElementById("Address").value == null) {
       return
     }
     ajax_post('./services/checkAddress.php', formData, function (data) {
-      if( data['id']== '--'){
-        document.getElementById("result-id").innerHTML = 'ID : --' ;
-      document.getElementById("result-token").innerHTML = 'Token : --' ;
-      document.getElementById("result-nonce").innerHTML = 'Nonce : --' ;
-      document.getElementById("result-sig").innerHTML = 'Sig : --' ;
-      document.getElementById("result-address").innerHTML = 'Address : --';
-      document.getElementById("result-time").innerHTML = 'Time : --';
-      document.getElementById("result-doubleCheck").innerHTML = 'Double Check : --';
-      document.getElementById("result-age").innerHTML = 'Age : --';
-      document.getElementById("result-status").innerHTML = 'Status : --';
-      }else{
-        document.getElementById("result-id").innerHTML = 'ID : ' + data['id'];
-      document.getElementById("result-token").innerHTML = 'Token : ' + data['lastToken'];
-      document.getElementById("result-nonce").innerHTML = 'Nonce : ' + data['lastNonce'];
-      document.getElementById("result-sig").innerHTML = 'Sig : ' + data['lastSig'];
-      document.getElementById("result-address").innerHTML = 'Address : ' + data['address'];
-      apiPull(document.getElementById("Address").value);
-      doubleCheck(data['lastNonce'], data['lastSig'], document.getElementById("Address").value);
-      document.getElementById("result-time").innerHTML = 'Time : ' + moment.utc(data['time']).local().format(
-        'YYYY-MM-DD HH:mm A');
+      if (data['id'] == '--') {
+        document.getElementById("CheckerPic").src = './images/logo_light.png';
+        document.getElementById("result-address").innerHTML = 'Address : --';
+        document.getElementById("result-time").innerHTML = 'Last successful login : --';
+        document.getElementById("result-doubleCheck").innerHTML = 'Double Check : --';
+        document.getElementById("result-age").innerHTML = 'Age : --';
+        document.getElementById("result-status").innerHTML = 'Status : --';
+      } else {
+        document.getElementById("CheckerPic").src = 'https://robohash.org/' + data['address'];
+        document.getElementById("result-address").innerHTML = 'Address : ' + data['address'];
+        apiPull(document.getElementById("Address").value);
+        doubleCheck(data['lastNonce'], data['lastSig'], data['address']);
+        document.getElementById("result-time").innerHTML = 'Last successful login : ' + moment.utc(data['time'])
+          .local().format(
+            'YYYY-MM-DD HH:mm A');
       }
 
-     
-     
-      
-      
-      
+
+
+
+
+
     });
   }
 </script>
