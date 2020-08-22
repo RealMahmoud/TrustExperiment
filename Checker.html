@@ -104,6 +104,9 @@
   function check() {
     var formData = new FormData();
     formData.append('Address', document.getElementById("Address").value);
+    if(document.getElementById("Address").value == '' || document.getElementById("Address").value == null){
+      return
+    }
     ajax_post('./services/checkAddress.php', formData, function (data) {
       document.getElementById("result-id").innerHTML = 'ID : ' + data['id'];
       document.getElementById("result-token").innerHTML = 'Token : ' + data['lastToken'];

@@ -1,5 +1,5 @@
 
-var imgURL = './images/idena_black.svg';
+var imgURL = './images/logo_black.png';
 var moonURL = './images/moon.svg';
 var sunURL = './images/sun.svg';
 var parent = document.querySelector(".header_logo");
@@ -29,7 +29,7 @@ scrolltop = document.createElement("button");
   //themetop.classList.add("hide");
   themetop.innerHTML = '<button type="button" id="moon" class="rem btn btn-icon theme"'
               +' onclick="localStorage.setItem(\'mode\', \'dark\');'
-              +'document.querySelector(\'.header_logo a img\').setAttribute(\'src\',\'./images/idena_black.svg\');'
+              +'document.querySelector(\'.header_logo a img\').setAttribute(\'src\',\'./images/logo_black.png\');'
               +'document.getElementsByTagName(\'html\')[0].classList.add(\'darkmode\');'
               +'document.getElementById(\'moon\').classList.add(\'rem\');'
               +'document.getElementById(\'sun\').classList.remove(\'rem\');'
@@ -38,7 +38,7 @@ scrolltop = document.createElement("button");
               +'style="opacity: 0.8;"/></button>'
         +'<button type="button" id="sun" class="rem btn btn-icon theme"'
               +' onclick="localStorage.setItem(\'mode\', \'light\'); document.getElementsByTagName(\'html\')[0].classList.remove(\'darkmode\');'
-              +'document.querySelector(\'.header_logo a img\').setAttribute(\'src\',\'./images/idena-logo.svg\');'
+              +'document.querySelector(\'.header_logo a img\').setAttribute(\'src\',\'./images/logo_light.png\');'
               +'document.getElementById(\'moon\').classList.remove(\'rem\');'
               +'document.getElementById(\'sun\').classList.add(\'rem\');'
               +'" id="sun">'
@@ -55,7 +55,7 @@ scrolltop = document.createElement("button");
     document.getElementById('moon').classList.add('rem');
 
   } else {
-    parent.querySelector("a img").src = './images/idena-logo.svg';
+    parent.querySelector("a img").src = './images/logo_light.png';
     document.getElementById('moon').classList.remove('rem');
     document.getElementById('sun').classList.add('rem');
   } 

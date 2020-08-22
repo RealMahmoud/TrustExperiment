@@ -13,13 +13,22 @@ if(!empty($address))
 
   $resultSQL = $conn->query("SELECT * FROM auth where address = '".$address."' ORDER BY `auth`.`id` DESC LIMIT 1;");
   $row = $resultSQL->fetch_row();
+if($row[0] ==null){
+  $result->id='--';
+  $result->lastToken='--';
+  $result->lastNonce='--';
+  $result->lastSig='--';
+  $result->address=$address;
+  $result->time='--';
+}else{
   $result->id=$row[0];
   $result->lastToken=$row[1];
   $result->lastNonce=$row[2];
   $result->lastSig=$row[3];
   $result->address=$row[4];
-  $result->authenticated=$row[5];
   $result->time=$row[6];
+}
+
   echo json_encode($result);
 
 } else {
