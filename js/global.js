@@ -49,14 +49,15 @@ scrolltop = document.createElement("button");
   document.getElementsByTagName('body')[0].append(scrolltop);
   document.getElementsByTagName('body')[0].append(themetop);
 
-  if (mode == 'dark') {
-    parent.querySelector("a img").src = imgURL;
-    document.getElementById('sun').classList.remove('rem');
-    document.getElementById('moon').classList.add('rem');
-
-  } else {
+  if (mode == 'light') {
     parent.querySelector("a img").src = './images/logo_light.png';
     document.getElementById('moon').classList.remove('rem');
     document.getElementById('sun').classList.add('rem');
+
+  } else {
+
+    parent.querySelector("a img").src = imgURL;
+    document.getElementById('sun').classList.remove('rem');
+    document.getElementById('moon').classList.add('rem');
   } 
 
