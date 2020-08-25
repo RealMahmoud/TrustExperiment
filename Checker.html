@@ -101,7 +101,12 @@
       document.getElementById("result-age").innerHTML = 'Age : ' + data['result'];
     });
     ajax_get('https://api.idena.org/api/identity/' + address, function (data) {
-      document.getElementById("result-status").innerHTML = 'Status : ' + data['result']['state'];
+      if(['result'] in data){
+        document.getElementById("result-status").innerHTML = 'Status : ' + data['result']['state'];
+      }else{
+        document.getElementById("result-status").innerHTML = 'Status : Not Validated';
+      }
+      
     });
 
 
