@@ -28,19 +28,19 @@
       <h5 class="info_block__accent">Send invite</h5>
       <form METHOD="POST" onsubmit="check(); return false;">
         <div class="input-group">
-          <input id="INVITE" class="formVal form-control" value="" disabled></input><br>
+          <input id="INVITE" class="formVal form-control" value="" ></input><br>
         </div>
-        <a class="btn btn-secondary btn-small" href='#' onclick="paste('INVITE'); return false;" disabled>
+        <a class="btn btn-secondary btn-small" href='#' onclick="paste('INVITE'); return false;" >
           <i class="icon icon--thin_arrow_right"></i>
           <span>Paste</span>
           <i class="icon icon--thin_arrow_left"></i>
         </a>
-        <a class="btn btn-secondary btn-small" href='#' onclick="Clear('INVITE'); return false;" disabled>
+        <a class="btn btn-secondary btn-small" href='#' onclick="Clear('INVITE'); return false;" >
           <i class="icon icon--thin_arrow_left"></i>
           <span>Clear</span>
           <i class="icon icon--thin_arrow_right"></i>
         </a>
-        <a class="btn btn-secondary btn-small" href='#' onclick="INVITE(); return false;" disabled>
+        <a class="btn btn-secondary btn-small" href='#' onclick="sendLevel1(); return false;" >
           <span id="text_submit">Send</span>
         </a>
 
@@ -53,9 +53,9 @@
 
         <div class="user-pic" style="margin-right: 0px;"><img id="CheckerPic" class="user-avatar"
             src="./images/logo_light.png" alt="pic" width="100"></div>
-            <br>
-            <br>
-            
+        <br>
+        <br>
+
         <p class="voteslbl mb-0" id="result-address">Address :</p>
         <p class="catlbl mb-0" id="result-age">Age :</p>
         <p class="violbl mb-0" id="result-status">Status :</p>
@@ -72,6 +72,8 @@
 </div>
 </main>
 <script type="text/javascript">
+  var currentaddress = '';
+  var currentPubKey = '';
   async function paste(id) {
     const text = await navigator.clipboard.readText();
     document.getElementById(id).value = text;
@@ -101,12 +103,12 @@
       document.getElementById("result-age").innerHTML = 'Age : ' + data['result'];
     });
     ajax_get('https://api.idena.org/api/identity/' + address, function (data) {
-      if(['result'] in data){
+      if (['result'] in data) {
         document.getElementById("result-status").innerHTML = 'Status : ' + data['result']['state'];
-      }else{
+      } else {
         document.getElementById("result-status").innerHTML = 'Status : Not Validated';
       }
-      
+
     });
 
 
@@ -129,6 +131,8 @@
       } else {
         document.getElementById("CheckerPic").src = 'https://robohash.org/' + data['address'];
         document.getElementById("result-address").innerHTML = 'Address : ' + data['address'];
+        currentPubKey = data['pubKey'];
+        currentaddress = data['address'];
         apiPull(document.getElementById("Address").value);
         doubleCheck(data['lastNonce'], data['lastSig'], data['address']);
         document.getElementById("result-time").innerHTML = 'Last successful login : ' + moment.utc(data['time'])
@@ -142,5 +146,56 @@
 
 
     });
+  }
+
+  function sendLevel1(address, invite) {
+    if (currentaddress.length == 42 && currentPubKey.length == 130 && document.getElementById("INVITE").value.length == 64) {
+      console.log(currentPubKey);
+      sendLevel2(currentaddress, document.getElementById("INVITE").value, '0x'+currentPubKey);
+    }
+
+
+
+  }
+
+  function sendLevel2(address, invite, pubkey) {
+    var xhr = new XMLHttpRequest();
+    var url = "https://rpc.idena.dev";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var json = JSON.parse(xhr.responseText);
+        sendlevel3(window.getTx(invite, 1, json.result.epoch, 1, address, 0, 0, 0, pubkey));
+      }
+    };
+    var data = JSON.stringify({
+      "method": "dna_epoch",
+      "id": 2,
+      "params": []
+    });
+    xhr.send(data);
+
+
+  }
+
+  function sendlevel3(RawTx) {
+    var xhr = new XMLHttpRequest();
+    var url = "https://rpc.idena.dev";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var json = JSON.parse(xhr.responseText);
+        alert('Sent');
+      }
+    };
+    var data = JSON.stringify({
+      "method": "bcn_sendRawTx",
+      "id": 2,
+      "params": ['0x' + RawTx]
+    });
+    xhr.send(data);
+
   }
 </script>

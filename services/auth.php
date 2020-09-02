@@ -21,6 +21,17 @@ function verifySignature($message, $signature, $address) {
     return $address == pubKeyToAddress($pubkey);
 }
 
+function getPubKey($message, $signature){
+  $hash   =  Keccak::hash( pack("H*", Keccak::hash(pack("H*", bin2hex($message)), 256))  ,256);
+  $sign   = ["r" => substr($signature, 2, 64),
+             "s" => substr($signature, 66, 64)];
+  $recid  = ord(hex2bin(substr($signature, 130, 2)));
+  if ($recid != ($recid & 1))
+      return false;
+  $ec = new EC('secp256k1');
+  $pubkey = $ec->recoverPubKey($hash, $sign, $recid);
+  return $pubkey->encode("hex");
+}
 
 $json = file_get_contents('php://input');
 $data = (array) json_decode($json);
@@ -47,7 +58,7 @@ if ($result->num_rows > 0) {
     $signature = $data['signature'];
 
     if (verifySignature($message, $signature, $address)) {
-      $sql = "UPDATE `auth` SET `sig` = '".$dataSig."', `authenticated` = 1 WHERE `token` = '".$dataToken."' LIMIT 1;";
+      $sql = "UPDATE `auth` SET `sig` = '".$dataSig."', `authenticated` = 1 , `pubkey` = '".getPubKey($message, $signature)."' WHERE `token` = '".$dataToken."' LIMIT 1;";
 
       $conn->query($sql);
 

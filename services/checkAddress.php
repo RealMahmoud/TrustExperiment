@@ -20,6 +20,7 @@ if($row[0] ==null){
   $result->lastSig='--';
   $result->address=$address;
   $result->time='--';
+  $result->pubKey='--';
 }else{
   $result->id=$row[0];
   $result->lastToken=$row[1];
@@ -27,6 +28,7 @@ if($row[0] ==null){
   $result->lastSig=$row[3];
   $result->address=$row[4];
   $result->time=$row[6];
+  $result->pubKey=$row[7];
 }
 
   echo json_encode($result);
