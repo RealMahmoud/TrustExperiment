@@ -13,6 +13,8 @@ if(!empty($address))
 
   $resultSQL = $conn->query("SELECT * FROM auth where address = '".$address."' ORDER BY `auth`.`id` DESC LIMIT 1;");
   $row = $resultSQL->fetch_row();
+  $SQLCount = $conn->query("SELECT COUNT(id) FROM auth where address = '".$address."';");
+  $row2 = $SQLCount->fetch_row();
 if($row[0] ==null){
   $result->id='--';
   $result->lastToken='--';
@@ -21,6 +23,7 @@ if($row[0] ==null){
   $result->address=$address;
   $result->time='--';
   $result->pubKey='--';
+  $result->loginTries='--';
 }else{
   $result->id=$row[0];
   $result->lastToken=$row[1];
@@ -29,6 +32,7 @@ if($row[0] ==null){
   $result->address=$row[4];
   $result->time=$row[6];
   $result->pubKey=$row[7];
+  $result->loginTries=$row2[0];
 }
 
   echo json_encode($result);
