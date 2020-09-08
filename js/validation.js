@@ -94,7 +94,7 @@ function getFlips() {
 function loadFlipsFromDB() {
     
     for (var i = 1; i <= 20; i++) {
-        FlipsArray.push('./flips/flip'+i+'.png')
+        FlipsArray.push('./flips/flip'+i+'.PNG')
     }
     
     for (var i = 0; i <= FlipsArray.length - 1; i++) {
