@@ -5,8 +5,7 @@
                 <div class="row">
                     <div class="col m-5">
                         <h3>Flip Challenge</h3>
-                        <button class="btn btn-secondary btn-small"
-                           onclick="startValidation(); return false;">
+                        <button class="btn btn-secondary btn-small" onclick="startValidation(); return false;">
                             <span id="text_submit">Start</span>
                         </button>
                     </div>
@@ -18,58 +17,64 @@
                 <div class="row">
                     <div class="col m-5"">
                         <h5>Thanks For taking the test</h5>
-                        <h5>The results will appear in your <a href="#Checker">profile</a> soon</h5>
-                        
+                        <h5>The results will appear in your <a href=" #Checker">profile</a> soon</h5>
+
                     </div>
                 </div>
             </div>
         </div>
         <div class=" card hidden" id="FlipsScreen" style="text-align:center;">
-                        <h1 class="info_block__accent" id="currentFliph1">0/0</h1>
-                        <div class="row">
-                            <div class="col-xl-1 col-md-1 col-sm-12 col-xs-12">
-                                <a id="prevButton" onclick="prevFlip();"
-                                    class="w-100 h-100 p-0 btn-block nextButton notdisabled m-1" style="flex: 0 0 0px; min-height: 35px;">
-                                    <i class="icon icon--thin_arrow_left w-100 text-center v-center"></i>
-                                </a>
-                            </div>
-                            <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
-                                <img src="https://flips.idena.io/flips/1.jpg" id="flipImage" height="450px" />
-                            </div>
-                            <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12">
-
-                                <div class="col-8 m-auto">
-                                    <button class="btn btn-secondary btn-small btn-block" id="leftButton"
-                                        onclick="chooseLeft(); return false;">
-                                        <span id="text_submit">Left</span>
-                                    </button>
-                                    <button class="btn btn-secondary btn-small btn-block" id="rightButton"
-                                        onclick="chooseRight(); return false;">
-                                        <span id="text_submit">Right</span>
-                                    </button>
-                                    <button class="btn btn-secondary btn-small btn-block hidden"
-                                        style="background-color: #191c1e !important" id="submitButton"
-                                        onclick="endValidation(); return false;">
-                                        <span id="text_submit">Submit</span>
-                                    </button>
-
-                                </div>
-
-                            </div>
-                            <div class="col-xl-1 col-md-1 col-sm-12 col-xs-12">
-                                <a id="nextButton" onclick="nextFlip();"
-                                    class="w-100 h-100 p-0 btn-block nextButton notdisabled m-1" style="flex: 0 0 0px; min-height: 35px;">
-                                    <i class="icon icon--thin_arrow_right w-100 text-center v-center"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <h5 id="validationTime" class="mt-1 mb-0" style="color: red;">00:00</h5>
-
-
-                    </div>
+            <h1 class="info_block__accent" id="currentFliph1">0/0</h1>
+            <div class="row">
+                <div class="col-xl-1 col-md-1 col-sm-12 col-xs-12">
+                    <a id="prevButton" onclick="prevFlip();"
+                        class="w-100 h-100 p-0 btn-block nextButton notdisabled m-1"
+                        style="flex: 0 0 0px; min-height: 35px;">
+                        <i class="icon icon--thin_arrow_left w-100 text-center v-center"></i>
+                    </a>
                 </div>
+                <div class="col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                    <img src="https://flips.idena.io/flips/1.jpg" id="flipImage" height="450px" />
+                </div>
+                <div class="col-xl-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="row h-100">
+                        <div class="col-8 mt-auto mr-auto ml-auto  ">
+                           
+                                <button class="btn btn-secondary btn-small btn-block" id="leftButton"
+                                    onclick="chooseLeft(); return false;">
+                                    <span id="text_submit">Left</span>
+                                </button>
+                                <button class="btn btn-secondary btn-small btn-block" id="rightButton"
+                                    onclick="chooseRight(); return false;">
+                                    <span id="text_submit">Right</span>
+                                </button>
+                                <button class="btn btn-secondary btn-small btn-block hidden"
+                                    style="background-color: #191c1e !important" id="submitButton"
+                                    onclick="endValidation(); return false;">
+                                    <span id="text_submit">Submit</span>
+                                </button>
+                           
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-xl-1 col-md-1 col-sm-12 col-xs-12">
+                    <a id="nextButton" onclick="nextFlip();"
+                        class="w-100 h-100 p-0 btn-block nextButton notdisabled m-1"
+                        style="flex: 0 0 0px; min-height: 35px;">
+                        <i class="icon icon--thin_arrow_right w-100 text-center v-center"></i>
+                    </a>
+                </div>
+            </div>
+
+            <h5 id="validationTime" class="mt-1 mb-0" style="color: red;">00:00</h5>
+
+
+        </div>
+    </div>
 
 
 
-                <script src="./js/validation.js"></script>
+    <script src="./js/validation.js"></script>
