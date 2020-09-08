@@ -5,7 +5,8 @@ header('Content-Type: application/json');
 
 $userAnswers = json_decode(file_get_contents('php://input'), true);
 
-$correctAnswers = ["Right","Right","Left","Left"];
+$correctAnswers = ["Left","Left","Right","Right","Left","Left","Left","Right","Right","Left","Left","Right","Left","Right","Left","Right","Left","Right","Left","Left"]
+;
 
 if(!(count($userAnswers) == count($correctAnswers))){
     die(json_encode(["results" => 'Hacking us?']));
@@ -16,13 +17,13 @@ if(isset($_SESSION['CODES-Token'])){
   $resultSQL = $conn->query("SELECT address FROM auth where token = '".$_SESSION['CODES-Token']."' AND authenticated = '1'  LIMIT 1 ;");
   $row = $resultSQL->fetch_row();
 if($row[0] ==null){
-  die(json_encode(["results" => 'Hacking us?']));
+  die(json_encode(["results" => 'You need to be logged in']));
 }else{
   $userAddress = $row[0];
 
 }
 }else{
-  die(json_encode(["results" => 'Yuou need to be logged in']));
+  die(json_encode(["results" => 'You need to be logged in']));
 }
 
     $points = 0;
