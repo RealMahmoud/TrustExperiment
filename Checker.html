@@ -203,4 +203,12 @@
     xhr.send(data);
 
   }
+  function checkLoggedStatus() {
+      ajax_get('./services/checkLogin.php', function (data) {
+        if (data['Logged'] == true) {
+          document.getElementById("Address").value = data['Address'];
+          check();
+        }
+      });
+    }
 </script>
