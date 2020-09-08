@@ -38,6 +38,7 @@ if($row[0] ==null){
    $score= $points/$totalPoints*100;
 if($row[0] == null){
     $conn->query("INSERT INTO `users`(`address`, `points`) VALUES ('".$userAddress."','".$score."');");
+    die(json_encode(["results" => True]));
 }else{
   die(json_encode(["results" => 'You can enter the test only once']));
   // $conn->query("UPDATE `users` SET `points`= '".$score."' WHERE `address` = '".$userAddress."' AND `points`");
