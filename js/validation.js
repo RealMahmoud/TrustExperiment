@@ -92,8 +92,11 @@ function getFlips() {
 }
 
 function loadFlipsFromDB() {
-    FlipsArray = ['https://flips.idena.io/flips/1.jpg', 'https://flips.idena.io/flips/2.jpg', 'https://flips.idena.io/flips/3.jpg', 'https://flips.idena.io/flips/4.jpg'];
-
+    
+    for (var i = 1; i <= 20; i++) {
+        FlipsArray.push('./flips/flip'+i+'.png')
+    }
+    
     for (var i = 0; i <= FlipsArray.length - 1; i++) {
         answers.push('')
     }
