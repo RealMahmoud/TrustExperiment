@@ -5,8 +5,7 @@ header('Content-Type: application/json');
 
 $userAnswers = json_decode(file_get_contents('php://input'), true);
 
-$correctAnswers = ["Left","Left","Right","Right","Left","Left","Left","Right","Right","Left","Left","Right","Left","Right","Left","Right","Left","Right","Left","Left"]
-;
+$correctAnswers = ["Left","Left","Right","Right","Left","Left","Left","Right","Right","Left","Left","Right","Left","Right","Left","Right","Left","Right","Left","Left"];
 
 if(!(count($userAnswers) == count($correctAnswers))){
     die(json_encode(["results" => 'Hacking us?']));
