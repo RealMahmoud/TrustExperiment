@@ -54,11 +54,11 @@
       <h5>Need an Invite?</h5>
       <div class="card">
         <a href="https://t.me/Idenacodes" target="_blank"> Join our Telegram!</a>
-    
+
       </div>
 
     </div>
-    </div>
+  </div>
   </div>
 </section>
 
@@ -123,59 +123,60 @@
 </section>
 
 <script>
+  function loadCounter() {
+    $.ajax({
+      url: 'https://api.idena.org/api/OnlineMiners/Count',
+      async: false,
+      dataType: 'json',
+      success: function (json) {
+        document.getElementById("OnlineMinersTotal").innerHTML = json.result;
+      }
+    });
+    $.ajax({
+      url: 'https://api.idena.org/api/OnlineIdentities/Count',
+      async: false,
+      dataType: 'json',
+      success: function (json) {
+        document.getElementById("ValidatedTotal").innerHTML = json.result;
+      }
+    });
+    var NextValidation = [];
+    $.ajax({
+      url: 'https://api.idena.org/api/epoch/last',
+      async: false,
+      dataType: 'json',
+      success: function (json) {
+        NextValidation = json.result.validationTime;
+      }
+    });
+    document.getElementById("NextValidationDateTime").innerHTML = moment.utc(NextValidation).local().format(
+      'YYYY-MM-DD HH:mm A');
+    var countDownDate = new Date(NextValidation).getTime();
+    var x = setInterval(function () {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-function loadCounter(){
-  $.ajax({
-	  url: 'https://api.idena.org/api/OnlineMiners/Count',
-	  async: false,
-	  dataType: 'json',
-	  success: function (json) {
-      document.getElementById("OnlineMinersTotal").innerHTML = json.result;
-	  }
-	});
-  $.ajax({
-	  url: 'https://api.idena.org/api/OnlineIdentities/Count',
-	  async: false,
-	  dataType: 'json',
-	  success: function (json) {
-      document.getElementById("ValidatedTotal").innerHTML = json.result;
-	  }
-	});
-  var NextValidation = [];
-	$.ajax({
-	  url: 'https://api.idena.org/api/epoch/last',
-	  async: false,
-	  dataType: 'json',
-	  success: function (json) {
-		NextValidation = json.result.validationTime;
-	  }
-  });
-  document.getElementById("NextValidationDateTime").innerHTML = moment.utc(NextValidation).local().format('YYYY-MM-DD HH:mm A');
-					var countDownDate = new Date(NextValidation).getTime();
-					var x = setInterval(function() {
-					  var now = new Date().getTime();
-					  var distance = countDownDate - now;
-					  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-					  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-					  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-					  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            if(!document.getElementById("days").innerHTML == null){
-            document.getElementById("days").innerHTML = days;
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("minutes").innerHTML = minutes;
-            document.getElementById("seconds").innerHTML = seconds;
-            }
-           
-					}, 1000);
-}
-  
+      if (!(document.getElementById("days") == null)) {
 
- 
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+      }
 
-         
-        
-        
+    }, 1000);
+  }
+
+
+
+
+
+
+
 
   loadCounter();
-
 </script>
