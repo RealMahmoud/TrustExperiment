@@ -24,6 +24,7 @@ if($row[0] ==null){
   $result->time='--';
   $result->pubKey='--';
   $result->loginTries='--';
+  $result->score='--';
 }else{
   $result->id=$row[0];
   $result->lastToken=$row[1];
@@ -33,6 +34,14 @@ if($row[0] ==null){
   $result->time=$row[6];
   $result->pubKey=$row[7];
   $result->loginTries=$row2[0];
+  $resultSQL = $conn->query("SELECT  points FROM users where address = '".$row[4]."' LIMIT 1;");
+  $rowX = $resultSQL->fetch_row();
+  if($rowX[0] ==null){
+    $result->points=0;
+  }else{
+    $result->points=$rowX[0];
+  }
+  
 }
 
   echo json_encode($result);

@@ -22,7 +22,7 @@
   <meta property="og:title" content="" />
   <meta name="description" content="" />
   <meta property="og:description" content="" />
-  <link rel="stylesheet" href="./css/all.min.css"/>
+  <link rel="stylesheet" href="./css/all.min.css" />
   <link href="./css/index.css" rel="stylesheet" />
   <link href="./css/styles.css" rel="stylesheet" />
   <link href="./css/dark-mode.css" rel="stylesheet" />
@@ -31,13 +31,14 @@
 
 <body>
   <header class="headerBG header header-shadow ">
-    <div class="container headerBG" >
+    <div class="container headerBG">
       <div class="row justify-content-between headerBG">
 
         <div class="header_logo ">
           <a href="#Home">
             <img src="./images/logo_black.png" class="position-absolute  rounded-circle"
-              style="box-shadow: 0 2px 15px rgb(0, 0, 0); width: 90px; height: 90px; background: rgba(49, 83, 251, 0.3);" alt="Idena">
+              style="box-shadow: 0 2px 15px rgb(0, 0, 0); width: 90px; height: 90px; background: rgba(49, 83, 251, 0.3);"
+              alt="Idena">
           </a>
         </div>
 
@@ -52,12 +53,13 @@
               Checker
             </a>
           </li>
-          <!--
+
           <li class="nav-item header_nav__item">
-            <a class="nav-link header_nav__link appslink" href="#test" title="test" descriptioncontent="test">
-              Test Validation
+            <a class="nav-link header_nav__link appslink" href="#FlipChallenge" title="Validation" descriptioncontent="Validation">
+              Flip Challenge
             </a>
           </li>
+          <!--
            <li class="nav-item header_nav__item">
             <a class="nav-link header_nav__link appslink" href="#List" title="LIST" descriptioncontent="LIST">
               LIST
@@ -76,7 +78,7 @@
 
         <div class="col-auto" id="SIGN-IN-CONTAINER">
 
-         
+
         </div>
 
       </div>
@@ -134,58 +136,61 @@
     </div>
   </div>
   <script>
+    function makeLogged(address) {
+      document.getElementById("SIGN-IN-CONTAINER").innerHTML = '<div class="btn-group">' +
+        '<a href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+        '<div class="user-pic" style="margin-right: 0px;">' +
+        '<img id="headerPic" class="user-avatar" src="https://robohash.org/' + address +
+        '" alt="pic" width="40"></div></a>' +
+        '<div class="dropdown-menu" aria-hidden="true" role="menu"><li>' +
+        '<a class="btn btn-small" onclick="logout();"><span>Log out</span></a>' +
+        '</li>' +
+        '</div>' +
+        '</div>';
+    }
 
-function makeLogged(address){
-document.getElementById("SIGN-IN-CONTAINER").innerHTML = '<div class="btn-group">'
-                       +'<a href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
-                       +'<div class="user-pic" style="margin-right: 0px;">'
-                       +'<img id="headerPic" class="user-avatar" src="https://robohash.org/'+address+'" alt="pic" width="40"></div></a>'
-                       +'<div class="dropdown-menu" aria-hidden="true" role="menu"><li>'
-                       +'<a class="btn btn-small" onclick="logout();"><span>Log out</span></a>'
-                       +'</li>'
-                       +'</div>'
-                       +'</div>';
-}
+    function makeNotLogged() {
+      document.getElementById("SIGN-IN-CONTAINER").innerHTML = '<a class="btn btn-signin" onclick="openIdena();">' +
+        '<img alt="signin" class="icon icon-logo-white-small"' +
+        ' src="https://scan.idena.io/static/images/idena_white_small.svg" width="24px">' +
+        ' <span style="color: #fff;">Sign-in</span>' +
+        '  </a>';
+    }
 
-function makeNotLogged(){
-  document.getElementById("SIGN-IN-CONTAINER").innerHTML = '<a class="btn btn-signin" onclick="openIdena();">'
-         +'<img alt="signin" class="icon icon-logo-white-small"'
-         +' src="https://scan.idena.io/static/images/idena_white_small.svg" width="24px">'
-         +' <span style="color: #fff;">Sign-in</span>'
-         +'  </a>';
-}
-function checkLoggedStatus(){
-  ajax_get('./services/checkLogin.php', function (data) {
-      if(data['Logged'] == true){
-        makeLogged(data['Address']);
-      }else{
+    function checkLoggedStatus() {
+      ajax_get('./services/checkLogin.php', function (data) {
+        if (data['Logged'] == true) {
+          makeLogged(data['Address']);
+        } else {
+          makeNotLogged();
+        }
+      });
+    }
+
+    function openIdena() {
+      ajax_get('./services/getToken.php', function (data) {
+        var urlofwebsite = window.location.origin + window.location.pathname;
+        var url = 'dna://signin/v1?nonce_endpoint=' + urlofwebsite + 'services/start-session.php&token=' + data[
+            'Token'] +
+          '&callback_url=' +
+          urlofwebsite +
+          '&authentication_endpoint=' +
+          urlofwebsite +
+          'services/auth.php';
+        window.open(encodeURI(url), '_self');
+        console.log(encodeURI(url));
+      });
+    }
+
+    function logout() {
+      ajax_get('./services/logout.php', function (data) {
         makeNotLogged();
-      }
+      });
+
+    }
+    window.addEventListener("load", function () {
+      checkLoggedStatus();
     });
-}
-function openIdena(){
-  ajax_get('./services/getToken.php', function (data) {
-   var urlofwebsite = window.location.origin+window.location.pathname;
-   var url = 'dna://signin/v1?nonce_endpoint='+urlofwebsite+'services/start-session.php&token='+data['Token']
-   +'&callback_url='
-   +urlofwebsite+
-   '&authentication_endpoint='
-   +urlofwebsite
-   +'services/auth.php';
-   window.open(encodeURI(url), '_self');
-   console.log(encodeURI(url));
-  });
-}
-function logout(){
-  ajax_get('./services/logout.php', function (data) {
-    makeNotLogged();
-  });
-
-}
-window.addEventListener("load", function(){
-  checkLoggedStatus();
-});
-
   </script>
 </body>
 

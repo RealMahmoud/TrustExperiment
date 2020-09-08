@@ -783,3 +783,33 @@ h1, .h1 {
   .dropdown:hover .dropbtn {
     background-color: #3e8e41;
   }
+
+
+
+  .v-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.nextButton:hover, .nextButton:focus, .nextButton:active .prevButton:hover, .prevButton:focus, .prevButton:active {
+
+
+background-color:#191c1e;
+}
+.nextButton , .prevButton {
+    background-color:#33373a;
+    border-radius: 10px;
+}
+.selectedButton{
+    background-color:#33373a !important;
+}
+a.disabled {
+    pointer-events: none;
+    color: #505050;
+}
+a.notDisabled {
+    cursor: pointer;
+}

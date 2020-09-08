@@ -59,6 +59,7 @@
         <p class="voteslbl mb-0" id="result-address">Address :</p>
         <p class="catlbl mb-0" id="result-age">Age :</p>
         <p class="violbl mb-0" id="result-status">Status :</p>
+        <p class="violbl mb-0" id="result-points">Flip Challenge :</p>
         <p class="timelbl mb-0" id="result-doubleCheck">Double Check : </p>
         <p class="timelbl mb-0" id="result-loginTries">Login Tries :</p>
         <p class="timelbl mb-0" id="result-time">Last successful login :</p>
@@ -127,10 +128,13 @@
         document.getElementById("result-doubleCheck").innerHTML = 'Double Check : --';
         document.getElementById("result-age").innerHTML = 'Age : --';
         document.getElementById("result-status").innerHTML = 'Status : --';
+        document.getElementById("result-points").innerHTML = 'Flip Challenge :';
         document.getElementById("result-loginTries").innerHTML = 'Login Tries : --';
+
       } else {
         document.getElementById("CheckerPic").src = 'https://robohash.org/' + data['address'];
         document.getElementById("result-address").innerHTML = 'Address : ' + data['address'];
+        document.getElementById("result-points").innerHTML = 'Flip Challenge : ' + data['points'] + '%';
         currentPubKey = data['pubKey'];
         currentaddress = data['address'];
         document.getElementById("result-loginTries").innerHTML = 'Login Tries : ' + data['loginTries'];
