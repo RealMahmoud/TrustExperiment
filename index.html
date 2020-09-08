@@ -42,11 +42,14 @@
           </a>
         </div>
 
+
         <div class="col-auto">
+          <nav>
           <li class="nav-item header_nav__item">
-            <a class="nav-link header_nav__link appslink" href="#Home" title="Home" descriptioncontent="Home">
-              Home
-            </a>
+          <a class="nav-link header_nav__link appslink" href="#Home" title="Home" descriptioncontent="
+          Home">
+          Home
+          </a>
           </li>
           <li class="nav-item header_nav__item">
             <a class="nav-link header_nav__link appslink" href="#Checker" title="Checker" descriptioncontent="Checker">
@@ -72,8 +75,17 @@
               FAQ
             </a>
           </li>
-        </div>
-
+          </nav>
+          <nav>
+          <select style="display: none;" onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);">
+          <option value="" selected="selected">Navigate</option>
+          <option value="#Home">Home</option>
+          <option value="#Checker">Checker</option>
+          <option value="#FlipChallenge">FlipChallenge</option>
+          <option value="#Faq">FAQ</option>
+          </select>
+          </nav>
+          </div>
 
 
         <div class="col-auto" id="SIGN-IN-CONTAINER">

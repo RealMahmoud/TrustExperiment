@@ -840,6 +840,12 @@ a.notDisabled {
 
 
 
+@media (max-width: 767px){
+    div nav li {
+        display: none!important;
+    }
+}
+
 @media (max-width: 767px) {
     div nav select {
         display: inline-block !important;
